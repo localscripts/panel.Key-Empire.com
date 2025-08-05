@@ -8,6 +8,9 @@ const PRODUCTS = [
   { name: "Ronin", imageUrl: "images/ronin.png" },
   { name: "Wave", imageUrl: "images/wave.png" },
   { name: "Zenith", imageUrl: "images/zenith.png" },
+  { name: "Seliware", imageUrl: "images/seliware.png" },
+  { name: "Assembly", imageUrl: "images/assembly.png" },
+  { name: "Valex", imageUrl: "images/valex.png" },
 ]
 
 const PAYMENT_OPTIONS = ["crypto", "paypal", "stripe", "cashapp", "venmo", "bank transfer"]
