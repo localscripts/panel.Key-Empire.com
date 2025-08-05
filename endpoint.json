@@ -1,0 +1,35 @@
+{
+  "majster": {
+    "pfp": "https://cdn.discordapp.com/attachments/1004054619879641210/1401561823806754979/cute-anime-profile-pictures-k6h3uqxn6ei77kgl.png?ex=6890b9aa&is=688f682a&hm=37776b326bafa2aa6224616c32a03068f985f29f64ab5270e3db1fc534035d09&",
+    "wave": {
+      "payments": ["crypto", "paypal", "stripe"],
+      "1": {
+        "price": "1.79",
+        "url": "https://yourstore.com/purchase/wave/1day"
+      },
+      "5": {
+        "price": "14.79",
+        "url": "https://yourstore.com/purchase/wave/1day"
+      },
+      "30": {
+        "price": "4.99",
+        "url": "https://yourstore.com/purchase/wave/30days"
+      },
+      "31": {
+        "price": "5.79",
+        "url": "https://yourstore.com/purchase/wave/1day"
+      }
+    },
+    "fluxus": {
+      "payments": ["crypto", "cashapp"],
+      "1": {
+        "price": "1.99",
+        "url": "https://yourstore.com/purchase/fluxus/daily"
+      },
+      "7": {
+        "price": "6.99",
+        "url": "https://yourstore.com/purchase/fluxus/weekly"
+      }
+    }
+  }
+}
