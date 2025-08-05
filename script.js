@@ -11,6 +11,13 @@ const PRODUCTS = [
   { name: "Seliware", imageUrl: "images/seliware.png" },
   { name: "Assembly", imageUrl: "images/assembly.png" },
   { name: "Valex", imageUrl: "images/valex.png" },
+  { name: "Serotonin", imageUrl: "images/serotonin.png" },
+  { name: "Matcha", imageUrl: "images/matcha.png" },
+  { name: "Potassium", imageUrl: "images/potassium.png" },
+  { name: "Aureus", imageUrl: "images/aureus.png" },
+  { name: "CodeX", imageUrl: "images/codex.png" },
+  { name: "Volcano", imageUrl: "images/volcano.png" },
+  { name: "Isabelle", imageUrl: "images/isabelle.png" },
 ]
 
 const PAYMENT_OPTIONS = ["crypto", "paypal", "stripe", "cashapp", "venmo", "bank transfer"]
