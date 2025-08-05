@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Builder Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">JSON Builder for Reseller Products</h1>
+        
+        <div class="reset-container">
+            <button id="resetBtn" class="btn btn-outline">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                </svg>
+                Reset All
+            </button>
+        </div>
+
+        <div class="grid-container">
+            <div class="left-section">
+                <div id="step1" class="card step-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            Reseller Information
+                            <div class="tooltip">
+                                <svg class="icon info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9,9 0,0 a3,3 0 1,1 6,0c0,2 -3,3 -3,3"/>
+                                    <path d="m9,17 6,0"/>
+                                </svg>
+                                <span class="tooltip-text">Enter the name of the reseller and their profile picture URL. This will be the top-level key in your JSON.</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content">
+                        <div class="form-group">
+                            <label for="resellerName">Reseller Name</label>
+                            <input type="text" id="resellerName" placeholder="e.g., voxlis">
+                            <p class="form-help">This will be the main key in your JSON.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="resellerPfp">Profile Picture URL</label>
+                            <input type="text" id="resellerPfp" placeholder="e.g., https://cdn.discordapp.com/attachments/...">
+                            <p class="form-help">Direct link to the reseller's profile picture.</p>
+                            <div id="pfpPreview" class="pfp-preview hidden">
+                                <p class="preview-label">Profile Picture Preview:</p>
+                                <img id="pfpImage" src="/placeholder.svg" alt="Profile Picture Preview" class="pfp-image">
+                            </div>
+                        </div>
+                        <button id="nextStep1" class="btn btn-primary btn-full" disabled>
+                            Next
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 18 6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step2" class="step-card hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                Add New Product
+                                <div class="tooltip">
+                                    <svg class="icon info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9,9 0,0 a3,3 0 1,1 6,0c0,2 -3,3 -3,3"/>
+                                        <path d="m9,17 6,0"/>
+                                    </svg>
+                                    <span class="tooltip-text">Select a product image and its payment methods. Product names will automatically be converted to lowercase.</span>
+                                </div>
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label>Select Product</label>
+                                <div id="productGrid" class="product-grid">
+                                </div>
+                                <p id="selectedProductText" class="form-help">Please select a product from the list above.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Payment Methods</label>
+                                <div id="paymentOptions" class="payment-options">
+                                </div>
+                                <p class="form-help">Click to select accepted payment methods.</p>
+                            </div>
+                            <button id="addProductBtn" class="btn btn-primary btn-full" disabled>
+                                <span id="addProductText">Add Product</span>
+                                <svg id="addProductLoader" class="icon spinner hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                                    <path d="M3 3v5h5"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="manageProductsCard" class="card hidden">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                Manage Products & Durations
+                                <div class="tooltip">
+                                    <svg class="icon info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m9,9 0,0 a3,3 0 1,1 6,0c0,2 -3,3 -3,3"/>
+                                        <path d="m9,17 6,0"/>
+                                    </svg>
+                                    <span class="tooltip-text">Define prices and URLs for different durations for each product. You can also edit payment methods here.</span>
+                                </div>
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="productsList" class="products-list">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="step-navigation">
+                        <button id="backStep2" class="btn btn-outline">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m15 18-6-6 6-6"/>
+                            </svg>
+                            Go Back
+                        </button>
+                        <button id="doneStep2" class="btn btn-primary" disabled>
+                            Done
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m9 18 6-6-6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="step3" class="card step-card hidden">
+                    <div class="card-header">
+                        <h2 class="card-title">Final JSON Output</h2>
+                    </div>
+                    <div class="card-content text-center">
+                        <p class="form-help">Your JSON is ready! Copy it from the right panel.</p>
+                        <div class="step-navigation">
+                            <button id="backStep3" class="btn btn-outline">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m15 18-6-6 6-6"/>
+                                </svg>
+                                Go Back
+                            </button>
+                            <button id="startOverBtn" class="btn btn-primary">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                    <path d="M21 3v5h-5"/>
+                                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                    <path d="M3 21v-5h5"/>
+                                </svg>
+                                Start Over
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="card json-output-card">
+                    <div class="card-header">
+                        <h2 class="card-title">
+                            Generated JSON Output
+                            <div class="tooltip">
+                                <svg class="icon info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="m9,9 0,0 a3,3 0 1,1 6,0c0,2 -3,3 -3,3"/>
+                                    <path d="m9,17 6,0"/>
+                                </svg>
+                                <span class="tooltip-text">This is the live JSON output based on your inputs. Copy it when you're done!</span>
+                            </div>
+                        </h2>
+                    </div>
+                    <div class="card-content json-content">
+                        <pre id="jsonOutput" class="json-pre"><code>{}</code></pre>
+                    </div>
+                    <div class="json-footer">
+                        <button id="copyJsonBtn" class="btn btn-primary btn-full">
+                            <svg id="copyIcon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                                <path d="m4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                            </svg>
+                            <svg id="checkIcon" class="icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6 9 17l-5-5"/>
+                            </svg>
+                            <span id="copyText">Copy JSON</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
