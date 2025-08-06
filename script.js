@@ -20,7 +20,7 @@ const PRODUCTS = [
   { name: "Isabelle", imageUrl: "images/isabelle.png" },
 ]
 
-const PAYMENT_OPTIONS = ["crypto", "paypal", "stripe", "cashapp", "venmo", "bank transfer"]
+const PAYMENT_OPTIONS = ["crypto", "paypal", "stripe", "cashapp", "venmo", "bank transfer", "robux"]
 
 class JsonBuilder {
   constructor() {
